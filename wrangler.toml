@@ -1,0 +1,23 @@
+# Cloudflare Pages - lokale Konfiguration.
+#
+# Diese Datei ist NICHT das Deployment. Sie beschreibt nur, was `wrangler`
+# auf diesem Rechner (und in der CI) starten soll, damit `npm run preview`
+# dieselbe Umgebung liefert wie Cloudflare spaeter: die statischen Dateien
+# aus out/, die Pages Functions aus functions/, dazu public/_headers und
+# public/_redirects. `next dev` kennt von alldem nichts.
+#
+# Die Werte im Cloudflare-Dashboard (Build-Command, Output-Dir, Env-Vars)
+# werden dort gesetzt, nicht hier - siehe Deployment-Checkliste in der README.
+
+# Nur ein lokaler Name. Beim Anlegen des Cloudflare-Projekts frei waehlbar.
+name = "website-template"
+
+# Ergebnis von `npm run build` (next.config.ts: output: 'export').
+pages_build_output_dir = "out"
+
+# Legt fest, welche Workers-Runtime-Semantik gilt. Nur mit Bedacht anheben -
+# ein neueres Datum kann das Verhalten der Laufzeit aendern.
+compatibility_date = "2025-09-23"
+
+[dev]
+port = 8788

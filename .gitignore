@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.*
+
+# Build output
+.next/
+out/
+build/
+dist/
+
+# Tests
+coverage/
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Env files (NIE committen – siehe CLAUDE.md §9)
+.env
+.env*.local
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Cloudflare (wrangler, lokale Secrets fuer Pages Functions)
+.wrangler/
+.dev.vars
+.dev.vars.*
+
+# OpenNext (nur falls ein Projekt spaeter doch auf den Worker-Adapter wechselt)
+.open-next/

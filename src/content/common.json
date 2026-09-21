@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore."
+  },
+  "brand": {
+    "name": "Lorem Ipsum",
+    "tagline": "Lorem ipsum dolor sit amet"
+  },
+  "a11y": {
+    "skipToContent": "Zum Inhalt springen",
+    "menuOpen": "Menü öffnen",
+    "menuClose": "Menü schließen",
+    "loading": "Wird geladen"
+  },
+  "navigation": [
+    { "label": "Start", "href": "/" },
+    { "label": "Über uns", "href": "/about" },
+    { "label": "Kontakt", "href": "/kontakt" }
+  ],
+  "footer": {
+    "copyright": "© Lorem Ipsum",
+    "links": [
+      { "label": "Impressum", "href": "/impressum" },
+      { "label": "Datenschutz", "href": "/datenschutz" }
+    ]
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Seite nicht gefunden",
+    "body": "Die angeforderte Seite existiert nicht oder wurde verschoben.",
+    "cta": "Zurück zur Startseite"
+  },
+  "error": {
+    "title": "Etwas ist schiefgelaufen",
+    "body": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut oder kehren Sie später zurück.",
+    "retry": "Erneut versuchen"
+  },
+  "cookieConsent": {
+    "message": "Diese Website verwendet ausschließlich technisch notwendige Cookies. Externe Inhalte werden erst nach Ihrer Zustimmung geladen.",
+    "accept": "Verstanden",
+    "settingsLabel": "Datenschutz-Hinweis"
+  },
+  "map": {
+    "consent": "Mit Klick auf \"Karte anzeigen\" werden Daten an Google übertragen.",
+    "button": "Karte anzeigen",
+    "previewAlt": "Kartenvorschau",
+    "iframeTitle": "Karte"
+  }
+}

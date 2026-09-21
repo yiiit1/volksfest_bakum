@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "Kontakt",
+    "description": "Nehmen Sie Kontakt mit uns auf. Wir freuen uns auf Ihre Nachricht."
+  },
+  "hero": {
+    "title": "Kontakt",
+    "lead": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Wir freuen uns auf Ihre Nachricht."
+  },
+  "form": {
+    "name": {
+      "label": "Name",
+      "placeholder": "Ihr Name"
+    },
+    "email": {
+      "label": "E-Mail",
+      "placeholder": "name@beispiel.de"
+    },
+    "message": {
+      "label": "Nachricht",
+      "placeholder": "Wie können wir helfen?"
+    },
+    "consent": {
+      "before": "Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verarbeitet werden. Weitere Hinweise dazu in der ",
+      "linkLabel": "Datenschutzerklärung",
+      "linkHref": "/datenschutz",
+      "after": ". Die Einwilligung kann jederzeit für die Zukunft widerrufen werden."
+    },
+    "honeypot": {
+      "label": "Dieses Feld bitte leer lassen"
+    },
+    "required": "Pflichtfeld",
+    "submit": "Nachricht senden",
+    "submitting": "Wird gesendet …",
+    "status": {
+      "success": "Vielen Dank! Ihre Nachricht ist angekommen. Wir melden uns in Kürze.",
+      "invalid": "Bitte prüfen Sie die markierten Felder.",
+      "captcha": "Die Spam-Prüfung ist noch nicht abgeschlossen oder fehlgeschlagen. Bitte laden Sie die Seite neu und versuchen es erneut.",
+      "unconfigured": "Der Versand ist in dieser Umgebung noch nicht eingerichtet. Bitte schreiben Sie uns bis dahin direkt per E-Mail.",
+      "send-failed": "Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es später erneut oder schreiben Sie uns direkt per E-Mail."
+    }
+  },
+  "address": {
+    "label": "Anschrift",
+    "lines": ["Lorem Ipsum GmbH", "Musterstraße 1", "12345 Musterstadt"]
+  }
+}

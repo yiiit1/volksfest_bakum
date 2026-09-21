@@ -1,0 +1,86 @@
+{
+  "meta": {
+    "title": "Datenschutzerklärung",
+    "description": "Informationen zur Verarbeitung personenbezogener Daten gemäß Art. 13 DSGVO."
+  },
+  "title": "Datenschutzerklärung",
+  "blocks": [
+    {
+      "type": "paragraph",
+      "text": "Wir freuen uns über Ihren Besuch auf dieser Website. Nachfolgend informieren wir Sie darüber, welche personenbezogenen Daten wir verarbeiten, zu welchem Zweck das geschieht und welche Rechte Ihnen zustehen."
+    },
+    {
+      "type": "heading",
+      "text": "Verantwortlicher"
+    },
+    {
+      "type": "address",
+      "lines": [
+        "Lorem Ipsum GmbH",
+        "Musterstraße 1",
+        "12345 Musterstadt",
+        "E-Mail: info@example.com"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Hosting"
+    },
+    {
+      "type": "paragraph",
+      "text": "Diese Website wird bei Cloudflare, Inc. gehostet. Beim Aufruf der Seiten verarbeitet der Hoster technisch notwendige Zugriffsdaten (u. a. IP-Adresse, Zeitpunkt, aufgerufene Seite, übertragene Datenmenge, Browsertyp). Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO – unser berechtigtes Interesse an einem sicheren und störungsfreien Betrieb."
+    },
+    {
+      "type": "heading",
+      "text": "Cookies"
+    },
+    {
+      "type": "paragraph",
+      "text": "Diese Website verwendet ausschließlich technisch notwendige Cookies. Es findet keine Analyse des Nutzerverhaltens statt. Externe Inhalte werden erst nach Ihrer ausdrücklichen Zustimmung geladen."
+    },
+    {
+      "type": "heading",
+      "text": "Kontaktformular"
+    },
+    {
+      "type": "paragraph",
+      "text": "Wenn Sie uns über das Kontaktformular schreiben, verarbeiten wir die von Ihnen eingegebenen Daten – Name, E-Mail-Adresse und Nachrichtentext – ausschließlich, um Ihre Anfrage zu beantworten. Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO, die Sie vor dem Absenden ausdrücklich erteilen, sowie Art. 6 Abs. 1 lit. b DSGVO, soweit die Anfrage auf einen Vertrag gerichtet ist. Sie können die Einwilligung jederzeit für die Zukunft widerrufen; die bis dahin erfolgte Verarbeitung bleibt davon unberührt."
+    },
+    {
+      "type": "paragraph",
+      "text": "Die Nachricht wird nicht in einer Datenbank gespeichert, sondern unmittelbar als E-Mail an unser Postfach zugestellt. Dort bewahren wir sie so lange auf, wie es zur Bearbeitung Ihres Anliegens erforderlich ist, und löschen sie anschließend – vorbehaltlich gesetzlicher Aufbewahrungsfristen."
+    },
+    {
+      "type": "subheading",
+      "text": "Auftragsverarbeiter: Brevo"
+    },
+    {
+      "type": "paragraph",
+      "text": "Für den Versand dieser Benachrichtigungs-E-Mail setzen wir Brevo (Sendinblue SAS, 106 boulevard Haussmann, 75008 Paris, Frankreich) ein. Brevo verarbeitet die Formulardaten ausschließlich weisungsgebunden für uns; es besteht ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO. Die Verarbeitung findet auf Servern innerhalb der Europäischen Union statt."
+    },
+    {
+      "type": "subheading",
+      "text": "Spam-Schutz: Cloudflare Turnstile"
+    },
+    {
+      "type": "paragraph",
+      "text": "Um das Formular vor automatisierten Einsendungen zu schützen, nutzen wir Cloudflare Turnstile (Cloudflare, Inc.). Turnstile setzt keine Cookies zu Werbe- oder Analysezwecken und erstellt kein geräteübergreifendes Profil. Verarbeitet werden technische Angaben Ihres Browsers sowie Ihre IP-Adresse, um zwischen Mensch und Bot zu unterscheiden. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO – unser berechtigtes Interesse daran, das Formular funktionsfähig und frei von Missbrauch zu halten."
+    },
+    {
+      "type": "heading",
+      "text": "Ihre Rechte"
+    },
+    {
+      "type": "paragraph",
+      "text": "Sie haben jederzeit das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) sowie Widerspruch gegen die Verarbeitung (Art. 21). Wenden Sie sich dazu an die oben genannte Adresse."
+    },
+    {
+      "type": "paragraph",
+      "text": "Unabhängig davon steht Ihnen ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde zu (Art. 77 DSGVO)."
+    },
+    {
+      "type": "note",
+      "text": "Platzhalter. Vor dem Livegang prüfen und um alle tatsächlich eingesetzten Dienste ergänzen (Karten, Schriftarten, Analyse, Buchungstools) – jeweils mit Zweck, Rechtsgrundlage, Empfängern und Speicherdauer. Die Abschnitte zu Kontaktformular, Brevo und Turnstile entfallen, wenn das Formular nicht eingesetzt wird."
+    }
+  ]
+}

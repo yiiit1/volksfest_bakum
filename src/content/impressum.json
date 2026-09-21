@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "title": "Impressum",
+    "description": "Impressum und Anbieterkennzeichnung gemäß § 5 DDG."
+  },
+  "title": "Impressum",
+  "blocks": [
+    { "type": "heading", "text": "Angaben gemäß § 5 DDG" },
+    {
+      "type": "address",
+      "lines": ["Lorem Ipsum GmbH", "Musterstraße 1", "12345 Musterstadt"]
+    },
+    {
+      "type": "address",
+      "lines": [
+        "Vertretungsberechtigt: Lorem Ipsum",
+        "Handelsregister: HRB 00000 / Amtsgericht Musterstadt",
+        "USt-IdNr.: DE000000000"
+      ]
+    },
+    { "type": "heading", "text": "Kontakt" },
+    {
+      "type": "address",
+      "lines": ["Telefon: +49 (0) 000 000000", "E-Mail: info@example.com"]
+    },
+    { "type": "heading", "text": "Redaktionell verantwortlich" },
+    {
+      "type": "paragraph",
+      "text": "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV: Lorem Ipsum (Anschrift wie oben)."
+    },
+    { "type": "heading", "text": "Streitschlichtung" },
+    {
+      "type": "paragraph",
+      "text": "Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen."
+    },
+    {
+      "type": "note",
+      "text": "Platzhalter. Vor dem Livegang durch die gesetzlich vorgeschriebenen Pflichtangaben des Kunden ersetzen – bei freien Berufen und Kammerberufen (z. B. Heilpraktiker) zusätzlich Berufsbezeichnung, zuständige Kammer/Aufsichtsbehörde und berufsrechtliche Regelungen."
+    }
+  ]
+}

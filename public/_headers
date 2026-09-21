@@ -1,0 +1,98 @@
+# Cloudflare Pages Headers.
+#
+# Diese Datei wird beim Build unveraendert nach out/ kopiert und von
+# Cloudflare Pages ausgewertet. Sie ersetzt `headers()` aus next.config.ts -
+# das funktioniert im statischen Export nicht (kein Node-Server).
+#
+# Format: eine Pfadangabe in einer Zeile, darunter eingerueckt die Header.
+# Es greifen ALLE passenden Regeln. Bei gleichem Header-Namen ersetzt die
+# spaetere Regel die fruehere aber NICHT - Cloudflare haengt den Wert an, es
+# geht dann "wert-a, wert-b" raus. Bei einer CSP wertet der Browser das als
+# zwei Richtlinien und setzt beide durch, bei Cache-Control gewinnt die
+# strengste Angabe. Wer einen geerbten Header wirklich ersetzen will,
+# entfernt ihn zuerst mit `! Header-Name` in der spaeteren Regel.
+# (Nachgemessen mit `npm run preview`; im Tina-Template haengt daran der
+# /admin*-Block, siehe 01_template_tinacms/public/_headers.)
+# Deshalb steht /* zuerst und die Sonderfaelle darunter.
+#
+# Pruefen nach dem ersten Deployment:
+#   curl -sI https://<domain>/ | sort
+#   https://securityheaders.com
+
+/*
+  # --- Content Security Policy -------------------------------------------
+  # 'unsafe-inline' bei script-src ist hier leider noetig und kein Versehen:
+  # Next.js legt die Daten fuer die React-Hydration als Inline-<script> in
+  # jede Seite. Nonces gibt es nur mit einem Server, der pro Request eine
+  # neue erzeugt - im statischen Export existiert der nicht.
+  # 'unsafe-inline' bei style-src: next/font und React setzen Inline-Styles.
+  #
+  # challenges.cloudflare.com steht fuer Cloudflare Turnstile im Kontakt-
+  # formular: das Widget laedt ein Script und oeffnet ein iframe. Wird kein
+  # NEXT_PUBLIC_TURNSTILE_SITE_KEY gesetzt, laedt nichts davon - die Eintraege
+  # koennen dann ersatzlos raus.
+  #
+  # Zu ergaenzen, sobald ein weiterer Dienst dazukommt (jeweils in die
+  # passende Direktive, nicht pauschal in default-src):
+  #   Google Maps:          frame-src https://www.google.com
+  #   Cloudflare Analytics: script-src + connect-src https://static.cloudflareinsights.com
+  #                                      connect-src https://cloudflareinsights.com
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self'; object-src 'none'; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+
+  # --- Uebrige Sicherheits-Header ----------------------------------------
+  # Kein Einbetten in fremde Seiten (aeltere Browser; CSP frame-ancestors
+  # deckt dasselbe ab).
+  X-Frame-Options: DENY
+
+  # Kein Raten des Content-Type ("nosniff").
+  X-Content-Type-Options: nosniff
+
+  # Beim Wechsel auf eine fremde Domain nur noch die eigene Herkunft senden,
+  # nicht den vollstaendigen Pfad.
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Browser-Funktionen, die diese Website nicht braucht, komplett abschalten.
+  # Bei Bedarf einzeln oeffnen, z. B. geolocation=(self).
+  Permissions-Policy: accelerometer=(), autoplay=(), browsing-topics=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), interest-cohort=(), magnetometer=(), microphone=(), midi=(), payment=(), usb=()
+
+  # Fremde Fenster duerfen nicht auf dieses zugreifen.
+  Cross-Origin-Opener-Policy: same-origin
+
+  # --- HSTS ---------------------------------------------------------------
+  # ERST EINSCHALTEN, wenn die Domain samt aller Subdomains dauerhaft ueber
+  # HTTPS laeuft. Ein Browser, der diesen Header einmal gesehen hat, laesst
+  # bis zum Ablauf keinen HTTP-Zugriff mehr zu - das ist nicht kurzfristig
+  # ruecknehmbar. `preload` zusaetzlich nur nach bewusster Anmeldung unter
+  # hstspreload.org; die Aufnahme in die Browser-Liste ist praktisch
+  # endgueltig.
+  # Alternativ laesst sich HSTS im Cloudflare-Dashboard unter SSL/TLS >
+  # Edge Certificates schalten - dann hier weglassen, nicht doppelt setzen.
+  #
+  # Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# --- Caching ---------------------------------------------------------------
+# Alles unter /_next/static/ traegt einen Hash im Dateinamen. Aendert sich der
+# Inhalt, aendert sich der Name - die Dateien duerfen also ein Jahr lang
+# unbesehen im Browser-Cache bleiben.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Das Vorschaubild aus src/app/opengraph-image.tsx landet als out/opengraph-image
+# im Build - ohne Dateiendung. Cloudflare Pages leitet den Content-Type aus der
+# Endung ab und liefert die Datei sonst als application/octet-stream aus; die
+# Vorschau in WhatsApp, LinkedIn und Slack bliebe dann leer, ohne Fehlermeldung.
+# Der Dateiname ist stabil, der Inhalt aendert sich nur mit einem Deployment -
+# ein Tag Cache ist deshalb unkritisch.
+/opengraph-image
+  Content-Type: image/png
+  Cache-Control: public, max-age=86400
+
+# Schriften aus public/fonts/ tragen keinen Hash. Eine Woche ist ein
+# vertretbarer Kompromiss; beim Austausch einer Schrift den Dateinamen
+# aendern (z. B. body-2.woff2), sonst sehen Wiederkehrer die alte.
+/fonts/*
+  Cache-Control: public, max-age=604800
+
+# HTML bewusst NICHT anfassen: Cloudflare liefert es mit Revalidierung aus.
+# Ein langer Cache hier bedeutet, dass ein Deployment beim Besucher nicht
+# ankommt.

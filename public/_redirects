@@ -1,0 +1,43 @@
+# Cloudflare Pages Redirects.
+#
+# Diese Datei wird beim Build unveraendert nach out/ kopiert und von
+# Cloudflare Pages ausgewertet. Sie ersetzt `redirects()` aus next.config.ts -
+# das funktioniert im statischen Export nicht (kein Node-Server).
+#
+# Format:  <von>  <nach>  <status>
+#   301 = dauerhaft (Rankings und Links wandern mit)
+#   302 = temporaer
+#   200 = Rewrite (URL bleibt stehen, anderer Inhalt wird ausgeliefert)
+#
+# Regeln:
+# - Erster Treffer gewinnt, Reihenfolge zaehlt.
+# - Platzhalter `:name` fuer ein Segment, `*` fuer den Rest des Pfads
+#   (in der Zielangabe als `:splat` wieder einsetzbar).
+# - Maximal 2.000 statische Regeln (Free Tier), Kommentare zaehlen nicht mit.
+# - Umlaute in alten URLs immer zusaetzlich prozentkodiert eintragen -
+#   Browser und Crawler senden sie in dieser Form.
+#
+# --------------------------------------------------------------------
+# Pro Projekt ausfuellen. Ohne aktive Regel ist die Datei wirkungslos.
+# --------------------------------------------------------------------
+
+# 1) www <-> Apex vereinheitlichen.
+#    Cloudflare Pages liefert beide Varianten aus, wenn beide als Custom
+#    Domain eingetragen sind - das waere Duplicate Content. Eine Schreibweise
+#    festlegen und die andere umleiten. Domain unten eintragen und
+#    einkommentieren:
+#
+# https://www.example.com/*  https://example.com/:splat  301
+
+# 2) Umzug von einer alten Website: jede alte URL, die es nicht mehr
+#    unveraendert gibt, hierhin. Quelle ist die alte sitemap.xml bzw. die
+#    Liste der indexierten Seiten (Google Search Console).
+#
+# /alte-seite            /neue-seite   301
+# /datenschutzerkl%C3%A4rung  /datenschutz  301
+# /datenschutzerklärung       /datenschutz  301
+
+# 3) Noch nicht existierende Bereiche vorlaeufig auf die Startseite,
+#    damit alte Links nicht auf 404 laufen.
+#
+# /portfolio  /  301

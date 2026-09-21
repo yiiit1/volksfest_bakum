@@ -1,0 +1,23 @@
+# Entwicklung laeuft unter Windows, der Build (CI und Cloudflare Pages) unter
+# Linux. Ohne diese Datei landen CRLF-Zeilenenden im Repository und erzeugen
+# Diffs, in denen jede Zeile geaendert erscheint.
+#
+# text=auto: Git normalisiert beim Commit auf LF und checkt plattformgerecht aus.
+* text=auto eol=lf
+
+# Binaerdateien nie anfassen.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.avif  binary
+*.ico   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.pdf   binary
+
+# Lockfile nicht in Merge-Konflikten von Hand zusammenfuehren.
+package-lock.json  -diff

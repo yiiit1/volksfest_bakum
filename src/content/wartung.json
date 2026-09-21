@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "title": "Website im Aufbau",
+    "description": "Unsere neue Website ist gerade im Aufbau. Bis dahin erreichen Sie uns telefonisch oder per E-Mail."
+  },
+  "brand": "Lorem Ipsum",
+  "hero": {
+    "title": "Unsere neue Website ist gerade im Aufbau.",
+    "lead": "In der Zwischenzeit erreichen Sie uns hier:"
+  },
+  "contact": [
+    { "label": "info@example.com", "href": "mailto:info@example.com" },
+    { "label": "+49 (0) 000 000000", "href": "tel:+49000000000" }
+  ],
+  "signature": "Wir freuen uns auf Sie – bis bald!",
+  "legal": {
+    "back": "Zurück zur Startseite"
+  },
+  "footer": {
+    "copyright": "Lorem Ipsum",
+    "links": [
+      { "label": "Impressum", "href": "/impressum" },
+      { "label": "Datenschutz", "href": "/datenschutz" }
+    ]
+  }
+}

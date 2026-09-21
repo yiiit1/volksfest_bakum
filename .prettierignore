@@ -1,0 +1,22 @@
+# Build-Ergebnisse und generierte Dateien
+.next/
+out/
+build/
+coverage/
+next-env.d.ts
+*.tsbuildinfo
+
+# Test-Berichte
+playwright-report/
+test-results/
+
+# Cloudflare
+.wrangler/
+
+# Lockfile: gehoert npm, nicht prettier
+package-lock.json
+
+# CLAUDE.md stammt von ../CLAUDE.md ab (inzwischen um die Cloudflare-Themen
+# erweitert, siehe Abschnitt 14). Prettier wuerde zusaetzlich die Tabellen neu
+# ausrichten und damit den Abgleich mit der Vorlage unnoetig verrauschen.
+CLAUDE.md
