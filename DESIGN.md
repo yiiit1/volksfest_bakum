@@ -1,10 +1,10 @@
 # Design: Entwurf C „Vereinsordner“
 
 Gewählt am 2026-09-26 aus drei Entwürfen (A Gemeinde-Linie, B Schaukasten,
-C Vereinsordner). Das abgenommene Original liegt in
-`design/entwurf-c-referenz.html` und läuft per Doppelklick ohne Internet.
-Die beiden anderen Entwürfe sind aus dem Projekt entfernt; sie liegen im
-Second Brain unter `raw/entwuerfe/volksfest-bakum-entwuerfe/`.
+C Vereinsordner) – die Wahl des Volksfestvereins. Entwürfe und Briefing sind
+nicht im Projekt, sie liegen im Second Brain unter
+`raw/entwuerfe/volksfest-bakum-entwuerfe/` (Original von C: `entwurf-c.html`,
+läuft per Doppelklick ohne Internet).
 
 ## Die Idee
 

@@ -44,9 +44,9 @@ Bildstil:          Fotos vom Festplatz und Vorstand (folgen), Strichsymbole
                    Festzelt-Schnickschnack.
 ```
 
-Details und Regeln: `DESIGN.md`. Abgenommenes Original:
-`design/entwurf-c-referenz.html`. Hex statt OKLCH, weil das die im Entwurf
-abgenommenen Werte sind.
+Details und Regeln: `DESIGN.md`. Hex statt OKLCH, weil das die im Entwurf
+abgenommenen Werte sind. Entwürfe und Briefings gehören nicht ins Repository
+(liegen im Second Brain, siehe `.gitignore`).
 
 ---
 

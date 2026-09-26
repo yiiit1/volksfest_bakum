@@ -39,9 +39,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## Design-System (Entwurf C „Vereinsordner“)
 
 - **Gestaltung und Regeln stehen in `DESIGN.md`**, die Tokens in
-  `src/app/globals.css`, das abgenommene Original in
-  `design/entwurf-c-referenz.html` (laeuft per Doppelklick). Bei Zweifeln, wie
-  etwas aussehen soll, gilt die Referenz.
+  `src/app/globals.css`. Entwuerfe, Briefings und Ausgangsmaterial gehoeren
+  nicht ins Repository - sie liegen im Second Brain und sind per `.gitignore`
+  (`input/`, `design/`, `entwuerfe/`, `PRODUCT.md`) ausgeschlossen.
 - **Aufbau**: `src/components/binder/Binder.tsx` legt um jede Seite den Ordner -
   Registerreiter (`src/components/Navigation.tsx`) plus das Blatt
   (`<main id="inhalt">`). Die Reiter kommen aus `registers` in

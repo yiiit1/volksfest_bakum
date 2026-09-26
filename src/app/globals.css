@@ -9,8 +9,8 @@
    Lila); das jeweils offene Register färbt die Oberkante des Blatts und die
    Linie unter der Überschrift.
 
-   Farben als Hex: das sind die im Entwurf abgenommenen Werte, 1:1 aus
-   design/entwurf-c-referenz.html übernommen. Regeln dazu: DESIGN.md.
+   Farben als Hex: das sind die im Entwurf abgenommenen Werte, 1:1
+   übernommen. Regeln dazu: DESIGN.md.
 
    Kein `@theme inline`, damit die Variablen auf :root landen.
    ===================================================================== */

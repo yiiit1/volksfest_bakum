@@ -20,8 +20,3 @@ package-lock.json
 # erweitert, siehe Abschnitt 14). Prettier wuerde zusaetzlich die Tabellen neu
 # ausrichten und damit den Abgleich mit der Vorlage unnoetig verrauschen.
 CLAUDE.md
-
-# Abgenommener Entwurf und Ausgangsmaterial des Kunden: bleiben wie geliefert
-design/
-input/
-.impeccable/

@@ -41,9 +41,14 @@ next-env.d.ts
 # OpenNext (nur falls ein Projekt spaeter doch auf den Worker-Adapter wechselt)
 .open-next/
 
-# Ausgangsmaterial (Briefing mit internen Preisangaben, Logo-PDF) bleibt lokal
-# und liegt im Second Brain - gehoert nicht ins Kunden-Repository.
+# Entwuerfe, Briefings und Ausgangsmaterial (interne Preise, Logo-Original)
+# gehoeren nicht ins Kunden-Repository - sie liegen im Second Brain.
 input/
+design/
+entwuerfe/
+PRODUCT.md
+briefing*.md
+*-briefing.md
 
 # Zwischenspeicher des Design-Werkzeugs impeccable
 .impeccable/
