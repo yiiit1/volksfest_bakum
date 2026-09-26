@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "title": "Mitgliedsantrag",
+    "description": "Mitglied im Volksfestverein Bakum e.V. werden: Antrag als PDF herunterladen, ausfüllen, unterschreiben und beim Vorstand abgeben."
+  },
+  "title": "Quis autem vel eum iure",
+  "lead": "Reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
+  "document": {
+    "title": "Mitgliedsantrag",
+    "meta": "PDF · 1 Seite · am Rechner ausfüllbar oder zum Ausdrucken",
+    "button": "Antrag herunterladen",
+    "href": "/downloads/mitgliedsantrag.pdf",
+    "filename": "Mitgliedsantrag-Volksfestverein-Bakum.pdf"
+  },
+  "steps": {
+    "title": "So geht's",
+    "items": ["Herunterladen und ausfüllen", "Unterschreiben", "Beim Vorstand abgeben"]
+  }
+}

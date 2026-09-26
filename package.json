@@ -1,5 +1,5 @@
 {
-  "name": "website-template",
+  "name": "volksfest-bakum",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -22,9 +22,7 @@
     "images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.62.7",
     "clsx": "^2.1.1",
-    "motion": "^12.23.12",
     "next": "^16.2.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

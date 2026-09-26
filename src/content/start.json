@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "title": "Volksfestverein Bakum e.V. – Mitglied werden",
+    "description": "Der Volksfestverein Bakum e.V. sucht Mitglieder. Verein, Vorstand, Mitgliedsantrag und Kontakt – alles auf einen Blick."
+  },
+  "cover": {
+    "title": "Lorem ipsum dolor sit amet, consectetur adipiscing",
+    "lead": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "primary": { "label": "Mitglied werden", "href": "/mitgliedsantrag" },
+    "secondary": { "label": "Über den Verein", "href": "/verein" }
+  },
+  "index": {
+    "title": "Inhalt",
+    "entries": [
+      { "key": "verein", "text": "Ullamco laboris nisi ut aliquip ex ea commodo" },
+      { "key": "vorstand", "text": "Duis aute irure dolor in reprehenderit" },
+      { "key": "antrag", "text": "Excepteur sint occaecat cupidatat non proident" },
+      { "key": "kontakt", "text": "Sunt in culpa qui officia deserunt mollit" }
+    ]
+  }
+}

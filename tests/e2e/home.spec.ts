@@ -1,51 +1,67 @@
 import { test, expect } from '@playwright/test'
 
-test('Startseite zeigt H1', async ({ page }) => {
-  await page.goto('/')
-  await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
-})
+const REGISTER = [
+  { path: '/verein', name: /^verein$/i },
+  { path: '/wer-wir-sind', name: /wer wir sind/i },
+  { path: '/mitgliedsantrag', name: /mitgliedsantrag/i },
+  { path: '/kontakt', name: /kontakt/i },
+] as const
 
-test('Startseite rendert die Sektionsliste aus dem Content-JSON', async ({ page }) => {
+test('Startseite zeigt Logo und genau eine H1', async ({ page }) => {
   await page.goto('/')
-
-  // Sechs Eintraege in content/home.json → sechs <section> direkt unter <main>.
-  // Faengt den Fall ab, dass eine Sektionsart still gar nichts ausgibt.
-  await expect(page.locator('main > section')).toHaveCount(6)
   await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1)
-  await expect(page.locator('#leistungen')).toBeVisible()
+  await expect(page.getByRole('img', { name: /volksfest bakum/i })).toBeVisible()
 })
 
-test.describe('Bewegung reduziert', () => {
-  // Seit Playwright 1.5x nur noch ueber contextOptions erreichbar - als
-  // eigene Test-Option gibt es reducedMotion nicht (mehr).
-  test.use({ contextOptions: { reducedMotion: 'reduce' } })
-
-  test('verschiebt beim Scrollen nichts', async ({ page }) => {
-    await page.goto('/')
-
-    // Parallax haengt am Scrollstand und wird von <MotionConfig> nicht
-    // erfasst - es muss selbst abschalten (siehe usePrefersReducedMotion).
-    await expect(page.locator('[data-motion="parallax"]').first()).toHaveCSS('transform', 'none')
-  })
-
-  test('blendet die Inhalte trotzdem ein', async ({ page }) => {
-    await page.goto('/')
-
-    // Reduzierte Bewegung heisst nicht "unsichtbar": die Deckkraft darf
-    // weiterlaufen, sonst bliebe die Seite leer. Geprueft wird die Huelle -
-    // sie traegt die Deckkraft, nicht die Ueberschrift selbst.
-    await expect(page.locator('[data-motion="reveal"]').first()).toHaveCSS('opacity', '1')
-  })
-})
-
-test('Navigation enthält Links zu allen Hauptseiten', async ({ page }) => {
+test('Reiter fuehren auf die vier Register und markieren das offene', async ({ page }) => {
   await page.goto('/')
-  await expect(page.getByRole('link', { name: /über uns/i }).first()).toBeVisible()
-  await expect(page.getByRole('link', { name: /kontakt/i }).first()).toBeVisible()
+  const reiter = page.getByRole('navigation', { name: 'Bereiche' })
+
+  for (const register of REGISTER) {
+    await reiter.getByRole('link', { name: register.name }).click()
+    await expect(page).toHaveURL(new RegExp(`${register.path}$`))
+    await expect(reiter.getByRole('link', { name: register.name })).toHaveAttribute(
+      'aria-current',
+      'page',
+    )
+    await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1)
+  }
+})
+
+test('Blatt traegt die Farbe des offenen Registers', async ({ page }) => {
+  await page.goto('/mitgliedsantrag')
+  // Registerfarbe 3 (#b7bbe0) als Oberkante des Blatts.
+  await expect(page.locator('main#inhalt')).toHaveCSS('border-top-color', 'rgb(183, 187, 224)')
+})
+
+test('Mitgliedsantrag ist als PDF erreichbar', async ({ page, request }) => {
+  await page.goto('/mitgliedsantrag')
+  const link = page.getByRole('link', { name: /antrag herunterladen/i })
+  await expect(link).toHaveAttribute('download', /\.pdf$/)
+
+  const response = await request.get((await link.getAttribute('href')) ?? '')
+  expect(response.status()).toBe(200)
+  expect(response.headers()['content-type']).toContain('application/pdf')
 })
 
 test('Kontaktformular validiert leere Eingaben', async ({ page }) => {
   await page.goto('/kontakt')
   await page.getByRole('button', { name: /senden/i }).click()
   await expect(page.getByText(/Namen an/i)).toBeVisible()
+})
+
+test.describe('Handy', () => {
+  test.use({ viewport: { width: 375, height: 812 } })
+
+  test('zeigt die Kurzform der Reiter und kein Querscrollen', async ({ page }) => {
+    await page.goto('/')
+    const reiter = page.getByRole('navigation', { name: 'Bereiche' })
+    await expect(reiter.getByRole('link', { name: 'Vorstand' })).toBeVisible()
+    await expect(reiter.getByRole('link', { name: 'Antrag' })).toBeVisible()
+
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    )
+    expect(overflow).toBeLessThanOrEqual(0)
+  })
 })

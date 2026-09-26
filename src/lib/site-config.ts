@@ -51,9 +51,9 @@ function resolveIsPreview(): boolean {
 }
 
 export const siteConfig = {
-  name: 'Lorem Ipsum',
+  name: 'Volksfestverein Bakum e.V.',
   /** Kurzform fuer das Web-App-Manifest (Startbildschirm, max. ~12 Zeichen). */
-  shortName: 'Lorem',
+  shortName: 'Volksfest',
   url: resolveSiteUrl(),
   locale: 'de',
 
@@ -66,7 +66,7 @@ export const siteConfig = {
    * globals.css (--color-background) anpassen - die beiden Werte haengen
    * nicht automatisch zusammen.
    */
-  themeColor: '#fcfcfc',
+  themeColor: '#028565',
 
   /**
    * Gegenstueck fuer den dunklen Modus. Wird nur ausgewertet, wenn
@@ -126,15 +126,17 @@ export const siteConfig = {
      * Feinere Typen sind moeglich und besser, wenn sie passen, z. B.
      * 'MedicalBusiness', 'Dentist', 'Restaurant', 'School'.
      */
-    type: 'LocalBusiness',
+    type: 'Organization',
     /** Firmierung laut Impressum, falls sie vom Markennamen abweicht. */
-    legalName: 'Lorem Ipsum GmbH',
+    legalName: 'Volksfestverein Bakum e.V.',
+    // OFFEN: echte Vereinsadresse, E-Mail und Telefon vom Vorstand - bis
+    // dahin Platzhalter wie auf der Kontaktseite.
     email: 'kontakt@example.com',
     telephone: '+49 000 0000000',
     address: {
       streetAddress: 'Musterstraße 1',
-      postalCode: '00000',
-      addressLocality: 'Musterstadt',
+      postalCode: '49456',
+      addressLocality: 'Bakum',
       addressRegion: 'Niedersachsen',
       addressCountry: 'DE',
     },

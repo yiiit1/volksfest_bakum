@@ -35,12 +35,11 @@ export const alt = siteConfig.name
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-// Entspricht --color-background / --color-foreground / --color-primary aus
-// globals.css, umgerechnet nach sRGB.
-const BACKGROUND = '#fcfcfc'
-const FOREGROUND = '#2b3040'
-const PRIMARY = '#3b74d4'
-const MUTED = '#6b7183'
+// Blatt, Schrift, erste Registerfarbe und Nebenschrift aus globals.css.
+const BACKGROUND = '#014f3c'
+const FOREGROUND = '#ffffff'
+const PRIMARY = '#6fdcb5'
+const MUTED = '#cdebe0'
 
 export default function OpengraphImage(): Response {
   const title = MAINTENANCE_MODE ? maintenance.meta.title : siteConfig.name

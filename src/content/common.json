@@ -1,33 +1,44 @@
 {
   "meta": {
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore."
+    "description": "Der Volksfestverein Bakum e.V. sucht Mitglieder: Wer mitmachen oder das Volksfest in Bakum unterstützen will, findet hier den Verein, den Vorstand und den Mitgliedsantrag."
   },
   "brand": {
-    "name": "Lorem Ipsum",
-    "tagline": "Lorem ipsum dolor sit amet"
+    "name": "Volksfestverein Bakum e.V.",
+    "tagline": "Mitmachen beim Volksfest in Bakum",
+    "logoAlt": "Volksfest Bakum e.V."
   },
   "a11y": {
     "skipToContent": "Zum Inhalt springen",
-    "menuOpen": "Menü öffnen",
-    "menuClose": "Menü schließen",
+    "registerNav": "Bereiche",
     "loading": "Wird geladen"
   },
-  "navigation": [
-    { "label": "Start", "href": "/" },
-    { "label": "Über uns", "href": "/about" },
-    { "label": "Kontakt", "href": "/kontakt" }
+  "registers": [
+    { "key": "start", "href": "/", "label": "Start", "short": "Start" },
+    { "key": "verein", "href": "/verein", "label": "Verein", "short": "Verein" },
+    { "key": "vorstand", "href": "/wer-wir-sind", "label": "Wer wir sind", "short": "Vorstand" },
+    { "key": "antrag", "href": "/mitgliedsantrag", "label": "Mitgliedsantrag", "short": "Antrag" },
+    { "key": "kontakt", "href": "/kontakt", "label": "Kontakt", "short": "Kontakt" }
   ],
   "footer": {
-    "copyright": "© Lorem Ipsum",
+    "copyright": "Volksfestverein Bakum e.V.",
     "links": [
       { "label": "Impressum", "href": "/impressum" },
       { "label": "Datenschutz", "href": "/datenschutz" }
-    ]
+    ],
+    "credit": {
+      "before": "Website: ",
+      "label": "Heitmann Software",
+      "href": "https://heitmann-software.de"
+    }
+  },
+  "placeholder": {
+    "photo": "Foto vom Festplatz",
+    "portrait": "Porträt folgt"
   },
   "notFound": {
     "code": "404",
     "title": "Seite nicht gefunden",
-    "body": "Die angeforderte Seite existiert nicht oder wurde verschoben.",
+    "body": "Dieses Blatt gibt es im Ordner nicht. Vielleicht wurde es verschoben.",
     "cta": "Zurück zur Startseite"
   },
   "error": {
@@ -39,11 +50,5 @@
     "message": "Diese Website verwendet ausschließlich technisch notwendige Cookies. Externe Inhalte werden erst nach Ihrer Zustimmung geladen.",
     "accept": "Verstanden",
     "settingsLabel": "Datenschutz-Hinweis"
-  },
-  "map": {
-    "consent": "Mit Klick auf \"Karte anzeigen\" werden Daten an Google übertragen.",
-    "button": "Karte anzeigen",
-    "previewAlt": "Kartenvorschau",
-    "iframeTitle": "Karte"
   }
 }

@@ -28,7 +28,11 @@ describe('cn', () => {
   })
 
   it('loest Container-Breiten und Schatten gegeneinander auf', () => {
-    expect(cn('max-w-page', 'max-w-narrow')).toBe('max-w-narrow')
-    expect(cn('shadow-soft', 'shadow-lifted')).toBe('shadow-lifted')
+    expect(cn('max-w-binder', 'max-w-narrow')).toBe('max-w-narrow')
+    expect(cn('shadow-page', 'shadow-leaf')).toBe('shadow-leaf')
+  })
+
+  it('behaelt die Blatt-Ueberschrift neben der Schriftfarbe', () => {
+    expect(cn('text-section', 'text-white')).toBe('text-section text-white')
   })
 })

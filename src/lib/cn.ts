@@ -24,12 +24,12 @@ const twMerge = extendTailwindMerge({
     classGroups: {
       // --text-* aus @theme. Ohne diesen Eintrag landen sie in der
       // Farbgruppe und heben sich gegenseitig mit text-foreground auf.
-      'font-size': [{ text: ['display', 'title', 'heading', 'lead', 'quote', 'eyebrow'] }],
+      'font-size': [{ text: ['small', 'body', 'lead', 'heading', 'section', 'title'] }],
       // --container-* aus @theme. Damit gewinnt bei
-      // `max-w-page max-w-narrow` wirklich die letzte Angabe.
-      'max-w': [{ 'max-w': ['card', 'narrow', 'page', 'wide'] }],
+      // `max-w-card max-w-narrow` wirklich die letzte Angabe.
+      'max-w': [{ 'max-w': ['card', 'narrow', 'binder'] }],
       // --shadow-* aus @theme.
-      shadow: [{ shadow: ['soft', 'lifted'] }],
+      shadow: [{ shadow: ['page', 'leaf'] }],
     },
   },
 })

@@ -16,7 +16,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   Kundenprojekt ein (Tokens, Fonts, Texte, site-config, Pflichtseiten),
   Teil 2 ist die Deployment-Checkliste fuer Cloudflare. Wer hier etwas
   aendert, das einen dieser Schritte betrifft, zieht die README mit.
-- Der Umbauplan steht in `PLAN.md`.
 - Ziel-Hosting ist **Cloudflare Pages als statischer Export** (`output: 'export'`,
   Output-Verzeichnis `out/`). Alles, was einen Node-Server braucht, funktioniert
   dort nicht: Server Actions, Route Handlers, ISR, `next/image`-Optimierung,
@@ -37,26 +36,25 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   `_headers` und `/api/contact` mit. `npm run lint` umfasst das ganze Projekt,
   `npm run typecheck` auch `tests/e2e`.
 
-## Design-System
+## Design-System (Entwurf C „Vereinsordner“)
 
-- **Alle Design-Tokens stehen in `src/app/globals.css`**: Farben, typografische
-  Skala (`text-display`, `text-title`, `text-heading`, `text-lead`, `text-quote`,
-  `text-eyebrow`), Container-Breiten (`max-w-card|narrow|page|wide`), Schatten,
-  Radien, Abschnitts-Rhythmus (`--section-space-*`) und Linienstaerken.
-  Feste Groessen in Komponenten sind ein Fehler - stattdessen den Token
-  benutzen oder einen neuen anlegen. Konkret: senkrechter Rhythmus ueber
-  `<Section space>`, Breite ueber `<Container width>`, Ueberschriften ueber
-  `<PageHeader>` / `<PageHeading>` (components/ui) bzw. `<SectionHeader>`
-  (features/sections). `py-20`, `text-4xl` oder `max-w-2xl` am Element sind
-  der Fehlerfall - sie wandern beim naechsten Kundenprojekt nicht mit.
-  `PageHeader` benutzt bewusst kein `<Reveal>`: ein Seitenkopf steht beim
-  Laden schon im Sichtbereich und muesste sonst den motion-Chunk mitziehen.
-- **Welche Schriftstufe wohin**: die Skala waechst mit dem Viewport, nicht mit
-  dem Kasten. `text-display` nur im Hero der Startseite, `text-title` im Kopf
-  einer Unterseite ueber die volle Breite, `text-heading` in einer schmalen
-  Karte (Wartungsseite, 404, Fehlerseite) und fuer jede `<h2>` im Fliesstext.
-  `text-title` in einer 34-rem-Karte sind auf dem Desktop 52 px in 544 px -
-  vier Zeilen Ueberschrift.
+- **Gestaltung und Regeln stehen in `DESIGN.md`**, die Tokens in
+  `src/app/globals.css`, das abgenommene Original in
+  `design/entwurf-c-referenz.html` (laeuft per Doppelklick). Bei Zweifeln, wie
+  etwas aussehen soll, gilt die Referenz.
+- **Aufbau**: `src/components/binder/Binder.tsx` legt um jede Seite den Ordner -
+  Registerreiter (`src/components/Navigation.tsx`) plus das Blatt
+  (`<main id="inhalt">`). Die Reiter kommen aus `registers` in
+  `src/content/common.json`; `data-register` am Ordner setzt die Farbe des
+  offenen Registers (`--register`), die Oberkante des Blatts und die Linie
+  unter der Ueberschrift uebernehmen sie.
+- **Bausteine** in `src/components/ui/`: `PageTitle` + `Lead` (Kopf jeder
+  Unterseite, genau ein `<h1>`), `ButtonLink`/`Button` (`primary` weiss,
+  `quiet` Kontur), `Icon` (Strichsymbole aus dem Entwurf), `Placeholder`
+  (Bildplatzhalter, bis der Verein Fotos liefert).
+- **Schriftstufen**: `text-title` nur fuer die Ueberschrift des Deckblatts,
+  `text-section` fuer die Ueberschrift jeder Unterseite, `text-heading` fuer
+  `<h2>` im Blatt, `text-lead` fuer den Vorspann, `text-small` fuer Nebeninfos.
 - **Eigene Tokens muessen in `src/lib/cn.ts` eingetragen sein.**
   tailwind-merge kennt nur die Standard-Skalen und haelt `text-title` sonst
   fuer eine Textfarbe: `cn('text-heading', 'text-foreground')` lieferte dann
@@ -64,29 +62,23 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   Build. Wer in globals.css einen `--text-*`, `--container-*` oder
   `--shadow-*`-Token ergaenzt, traegt ihn dort mit ein
   (Regressionstest: `src/lib/cn.test.ts`).
-- **Hell/Dunkel** ueber `siteConfig.features.colorScheme` ('light' | 'auto' |
-  'dark'). Der Wert landet als `data-theme` auf `<html>`, setzt `color-scheme`
-  und entscheidet damit, welchen Zweig die `light-dark()`-Tokens nehmen. Es
-  gibt bewusst nur einen Token-Block fuer beide Modi und keinen Umschalter in
-  der Oberflaeche.
-- **Sektionen**: eine Seite ist eine geordnete Liste in JSON
-  (`src/content/home.json` → `sections`), gerendert von
-  `@/features/sections/components/SectionList`. Sechs Arten: `hero`, `split`,
-  `feature-grid`, `gallery`, `quote`, `cta`. Jede hat `id`, `space`, `tone`,
-  `bordered`. Umordnen = Bloecke im JSON tauschen.
-  Die Liste wird beim Build gegen `@/features/sections/schema` geprueft - ein
-  Tippfehler bricht den Build ab statt still eine leere Seite zu erzeugen.
-  Neue Art: Schema ergaenzen, Komponente anlegen, in `SectionList` eintragen
-  (der `switch` ist erschoepfend, TypeScript meldet den fehlenden Fall).
-- **Freies JSX bleibt erlaubt.** Die Sektionsliste ist eine Abkuerzung, kein
-  Korsett - `src/app/about/page.tsx` ist absichtlich handgeschrieben. Auch
-  diese Seiten benutzen aber Section/Container/PageHeader und die Tokens.
-- **Neue Unterseite**: fuenf Stellen - Content-JSON, `src/app/<route>/page.tsx`
-  (inklusive `MAINTENANCE_MODE`-Zweig, sonst ist der Wartungsmodus loechrig),
-  `navigation` in `common.json`, `ROUTES` in `src/app/sitemap.ts`, dann
-  `npm run build && npm run preview`. Ausfuehrlich in der README, Teil 1.
+- **Nur ein Farbmodus.** Die Seite ist immer dunkelgruen; `color-scheme`
+  steht bewusst auf `light`, damit Haekchenfeld und Formularfelder weiss
+  bleiben (siehe Kommentar in globals.css).
+- **Seiten**: `/` (Deckblatt), `/verein`, `/wer-wir-sind`, `/mitgliedsantrag`,
+  `/kontakt`, dazu `/impressum` und `/datenschutz` (ohne Reiter, Blatt weiss
+  gerandet). Jede Seite hat ein eigenes Content-JSON unter `src/content/`.
+- **Neues Register** (sollte selten sein - vier Reiter sind Julians Vorgabe):
+  Content-JSON, `src/app/<route>/page.tsx` (inklusive `MAINTENANCE_MODE`-Zweig),
+  Eintrag in `registers` in `common.json`, Farbe in `TAB_COLOR` und
+  `[data-register]` (globals.css), `ROUTES` in `src/app/sitemap.ts`, dann
+  `npm run build && npm run preview`.
+- **Mitgliedsantrag** ist ein PDF, kein Online-Formular:
+  `public/downloads/mitgliedsantrag.pdf`, gebaut mit
+  `py scripts/mitgliedsantrag/make_antrag.py` (braucht `reportlab` und
+  `Pillow`). Texte darin sind noch teilweise Platzhalter.
 - **Oberflaechentexte stehen in `src/content/common.json`**, nicht im TSX:
-  `a11y` (Sprunglink, Menue, Ladeanzeige), `notFound`, `error`, `map`,
+  `a11y`, `registers`, `footer`, `placeholder`, `notFound`, `error`,
   `cookieConsent`. Neue sichtbare Zeichenkette in einer Komponente heisst:
   erst einen Schluessel dort anlegen.
 - **Bilder** laufen vor dem Einchecken durch `npm run images -- <dateien>`
@@ -94,26 +86,18 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   aus). Grund: `images.unoptimized: true` - im Export verkleinert niemand
   etwas zur Laufzeit. Das Skript braucht `sharp` (devDependency) und laeuft
   bewusst nicht im Build mit.
-- **Motion** unter `src/components/motion/`: `<Reveal>`, `<Stagger>`,
-  `<Parallax>`, Werte in `tokens.ts`. Reveal und Stagger sichern
-  `prefers-reduced-motion` ueber `<MotionConfig reducedMotion="user">` selbst
-  ab; Parallax haengt am Scrollstand, wo MotionConfig nicht greift, und nutzt
-  dafuer `usePrefersReducedMotion`. Ohne JavaScript macht der
-  `<noscript>`-Block im Root-Layout alles sichtbar (`[data-motion]`).
-  Achtung: `motion` ist mit ~48 kB (gzip) die groesste Abhaengigkeit im
-  Client-Bundle. Der Chunk laedt nur auf Routen, die eine der drei
-  Komponenten benutzen - die Startseite zahlt ihn, `/about` nicht. Beim
-  Einbauen also mitdenken, ob die Seite die Bewegung wirklich braucht.
+- **Bewegung** gibt es nur eine: das kurze Umblaettern (`animate-turn`) beim
+  Seitenwechsel, reine CSS-Animation, abgeschaltet bei
+  `prefers-reduced-motion`. Die Motion-Bibliothek ist entfernt.
 
-## Platzhalter, die pro Kundenprojekt ersetzt werden
+## Was vor dem Livegang noch ersetzt werden muss
 
-- `src/app/icon.png` / `src/app/apple-icon.png` — generische Platzhalter in der
-  Primaerfarbe. Durch das Kundenlogo ersetzen (512 x 512 bzw. 180 x 180).
-- `src/content/*.json` — alle Texte, inklusive `impressum.json`,
-  `datenschutz.json` und `wartung.json`.
-- `src/lib/site-config.ts` und `.env.local` — Name und URL der Website.
-- `public/_redirects` — nur Kommentare; Regeln pro Projekt eintragen.
-- `src/app/globals.css` — Design-Tokens (`@theme`), siehe oben.
-- `public/images/platzhalter-*.svg` — graue Blindbilder fuer Hero, Split und
-  Galerie. Durch echte Motive ersetzen - `npm run images` erledigt Groesse,
-  Format und die `width`/`height`-Angabe fuer das JSON.
+- **Alle Texte sind Blindtext** (Lorem ipsum) - bewusst, damit nur das Design
+  beurteilt wurde. Echte Texte vom Verein in `src/content/*.json`.
+- **Fotos**: Festplatz (Deckblatt) und Vorstandsportraets sind `Placeholder`.
+  Echte Bilder durch `npm run images -- <dateien>`, dann `<Image>` einsetzen.
+- **Kontaktdaten** (Anschrift, E-Mail, Telefon) in `kontakt.json`,
+  `vorstand.json`, `site-config.ts` (`organization`) und im Antrags-PDF.
+- **Impressum und Datenschutz** (`impressum.json`, `datenschutz.json`) noch aus
+  der Vorlage - Vereinsangaben (Vorstand, Registergericht, VR-Nummer) fehlen.
+- `public/_redirects` - nur Kommentare; Regeln pro Projekt eintragen.

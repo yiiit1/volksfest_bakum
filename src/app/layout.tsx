@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
-// import localFont from 'next/font/local'
-import { Navigation } from '@/components/Navigation'
+import localFont from 'next/font/local'
+import { Binder } from '@/components/binder/Binder'
 import { Footer } from '@/components/Footer'
 import { CookieConsent } from '@/components/CookieConsent'
 import { CloudflareAnalytics } from '@/components/CloudflareAnalytics'
@@ -12,23 +12,14 @@ import common from '@/content/common.json'
 import maintenance from '@/content/wartung.json'
 import './globals.css'
 
-// =====================================================================
-// Fonts: Eigene .woff2-Dateien in public/fonts/ ablegen, dann
-// localFont einkommentieren und auf <body className=…> setzen.
-// CLAUDE.md §7: keine Verbindung zu fonts.googleapis.com (DSGVO).
-// =====================================================================
-//
-// const display = localFont({
-//   src: '../../public/fonts/display.woff2',
-//   variable: '--font-display-loaded',
-//   display: 'swap',
-// })
-//
-// const body = localFont({
-//   src: '../../public/fonts/body.woff2',
-//   variable: '--font-body-loaded',
-//   display: 'swap',
-// })
+// Schibsted Grotesk, variable Schrift 400-900, lateinischer Zeichensatz.
+// Lokal ausgeliefert - keine Verbindung zu fonts.googleapis.com (CLAUDE.md §7).
+const schibsted = localFont({
+  src: '../../public/fonts/schibsted-grotesk.woff2',
+  variable: '--font-schibsted',
+  weight: '400 900',
+  display: 'swap',
+})
 
 // Vorschau-Deployments werden komplett aus dem Index gehalten - sonst
 // konkurriert die *.pages.dev-Adresse mit der echten Domain (siehe
@@ -117,49 +108,28 @@ export default function RootLayout({
 }): React.ReactElement {
   return (
     <html lang={siteConfig.locale} data-theme={siteConfig.features.colorScheme}>
-      <head>
-        {/* Ohne JavaScript laufen die Einblend-Animationen aus
-            src/components/motion/ nie an - die Inhalte blieben dann auf
-            opacity: 0 stehen und die Seite waere leer. Diese Regel greift
-            nur, wenn wirklich kein Skript laeuft, und macht alles sichtbar. */}
-        <noscript>
-          <style
-            dangerouslySetInnerHTML={{
-              __html: '[data-motion]{opacity:1!important;transform:none!important}',
-            }}
-          />
-        </noscript>
-      </head>
-      {/* Beim Aktivieren der Fonts: className={`${display.variable} ${body.variable} flex …`} */}
-      <body className="flex min-h-screen flex-col font-sans antialiased">
+      <body className={`${schibsted.variable} flex min-h-screen flex-col font-sans antialiased`}>
         {/* Sprunglink: fuer Tastatur- und Screenreader-Nutzung der einzige Weg,
-            die Navigation zu ueberspringen. Bis zum Fokus unsichtbar, dann
-            sichtbar oben links. Zielt auf <main id="inhalt"> - im Wartungs-
-            modus liegt dieselbe id in MaintenanceShell. */}
+            die Reiter zu ueberspringen. Bis zum Fokus unsichtbar, dann
+            sichtbar oben links. Zielt auf <main id="inhalt"> im Ordner - im
+            Wartungsmodus liegt dieselbe id in MaintenanceShell. */}
         <a
           href="#inhalt"
-          className="bg-primary text-primary-foreground sr-only rounded-[var(--radius-md)] px-4 py-2 text-sm font-medium focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50"
+          className="text-page sr-only z-50 rounded-lg bg-white px-4 py-2 font-bold focus:not-sr-only focus:absolute focus:top-4 focus:left-4"
         >
           {common.a11y.skipToContent}
         </a>
 
         {/* Waehrend der Wartung liefert das Layout nur den Rahmen - was
             angezeigt wird, entscheidet jede Seite selbst beim Build (siehe
-            @/lib/maintenance). Navigation, Footer und Cookie-Consent bleiben
+            @/lib/maintenance). Ordner, Footer und Cookie-Consent bleiben
             unveraendert und sind nach dem Umschalten sofort wieder aktiv. */}
         {MAINTENANCE_MODE ? (
           children
         ) : (
           <>
-            <Navigation />
-            {/* tabIndex={-1}: <main> ist von sich aus nicht fokussierbar. Ohne
-                das Attribut springt der Sprunglink zwar sichtbar an die
-                richtige Stelle, der Tastaturfokus bleibt aber in der
-                Navigation haengen - der naechste Tab-Druck landet wieder im
-                Menue. */}
-            <main id="inhalt" tabIndex={-1} className="flex-1">
-              {children}
-            </main>
+            {/* Der Ordner bringt Reiter und <main id="inhalt"> mit. */}
+            <Binder>{children}</Binder>
             <Footer />
             {siteConfig.features.cookieConsent && <CookieConsent />}
           </>

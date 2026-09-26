@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "title": "Verein",
+    "description": "Was der Volksfestverein Bakum e.V. macht und warum er Mitglieder sucht."
+  },
+  "title": "Sed ut perspiciatis unde omnis",
+  "lead": "Iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.",
+  "body": "Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.",
+  "facts": [
+    {
+      "term": "Lorem ipsum",
+      "text": "Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+    },
+    {
+      "term": "Ut enim ad minim",
+      "text": "Veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo."
+    },
+    {
+      "term": "Duis aute irure",
+      "text": "Dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla."
+    },
+    {
+      "term": "Excepteur sint",
+      "text": "Occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim."
+    }
+  ]
+}

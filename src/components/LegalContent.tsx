@@ -29,8 +29,8 @@ type VariantStyles = {
 const styles: Record<Variant, VariantStyles> = {
   site: {
     wrapper: 'mt-8 grid gap-4 text-muted-foreground',
-    heading: 'mt-6 font-display text-heading font-semibold text-foreground',
-    subheading: 'mt-3 font-display text-base font-semibold text-foreground',
+    heading: 'mt-6 font-display text-heading font-bold text-foreground',
+    subheading: 'mt-3 font-display text-base font-bold text-foreground',
     list: 'ml-5 grid list-disc gap-2',
     note: 'text-sm',
   },

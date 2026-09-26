@@ -17,40 +17,17 @@ test.describe('Sprunglink', () => {
   })
 })
 
-test.describe('Mobile-Drawer', () => {
-  test.use({ viewport: { width: 375, height: 812 } })
-
-  test('sperrt das Scrollen und gibt es beim Schliessen wieder frei', async ({ page }) => {
+test.describe('Registerreiter', () => {
+  test('sind nach dem Sprunglink der Reihe nach per Tab erreichbar', async ({ page }) => {
     await page.goto('/')
-    const toggle = page.getByRole('button', { name: /menü öffnen/i })
+    const reiter = page.getByRole('navigation', { name: 'Bereiche' }).getByRole('link')
 
-    await toggle.click()
-    await expect(page.locator('#mobile-nav')).toBeVisible()
-    await expect(page.locator('body')).toHaveCSS('overflow', 'hidden')
-
-    await page.keyboard.press('Escape')
-    await expect(page.locator('#mobile-nav')).toBeHidden()
-    await expect(page.locator('body')).not.toHaveCSS('overflow', 'hidden')
-    // Escape muss den Fokus zurueckgeben, sonst faellt er an den Dokumentanfang.
-    await expect(page.getByRole('button', { name: /menü öffnen/i })).toBeFocused()
-  })
-
-  test('haelt den Fokus im offenen Menue', async ({ page }) => {
-    await page.goto('/')
-    await page.getByRole('button', { name: /menü öffnen/i }).click()
-
-    const links = page.locator('#mobile-nav a')
-    const count = await links.count()
-
-    // Vom Toggle-Button durch alle Links - der naechste Tab muss wieder auf
-    // dem Button landen und darf nicht hinter das Menue wandern.
-    for (let i = 0; i < count; i++) {
-      await page.keyboard.press('Tab')
-      await expect(links.nth(i)).toBeFocused()
-    }
-
+    // Erster Tab-Stopp ist der Sprunglink, danach die fuenf Reiter.
     await page.keyboard.press('Tab')
-    await expect(page.getByRole('button', { name: /menü schließen/i })).toBeFocused()
+    for (let i = 0; i < 5; i++) {
+      await page.keyboard.press('Tab')
+      await expect(reiter.nth(i)).toBeFocused()
+    }
   })
 })
 

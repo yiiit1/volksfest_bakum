@@ -4,6 +4,8 @@ import { useCallback, useState } from 'react'
 import Link from 'next/link'
 import kontakt from '@/content/kontakt.json'
 import { Button } from '@/components/ui/Button'
+import { Icon } from '@/components/ui/Icon'
+import { cn } from '@/lib/cn'
 import { Turnstile, TURNSTILE_ENABLED } from '@/features/contact/components/Turnstile'
 import {
   validateContactInput,
@@ -119,24 +121,31 @@ export function ContactForm(): React.ReactElement {
         : null
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="relative grid gap-4">
-      <Field
-        name="name"
-        label={kontakt.form.name.label}
-        placeholder={kontakt.form.name.placeholder}
-        autoComplete="name"
-        required
-        errors={fieldErrors.name}
-      />
-      <Field
-        name="email"
-        type="email"
-        label={kontakt.form.email.label}
-        placeholder={kontakt.form.email.placeholder}
-        autoComplete="email"
-        required
-        errors={fieldErrors.email}
-      />
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      aria-label={kontakt.form.label}
+      className="relative grid gap-5"
+    >
+      <div className="grid gap-5 sm:grid-cols-2 sm:gap-x-[22px]">
+        <Field
+          name="name"
+          label={kontakt.form.name.label}
+          placeholder={kontakt.form.name.placeholder}
+          autoComplete="name"
+          required
+          errors={fieldErrors.name}
+        />
+        <Field
+          name="email"
+          type="email"
+          label={kontakt.form.email.label}
+          placeholder={kontakt.form.email.placeholder}
+          autoComplete="email"
+          required
+          errors={fieldErrors.email}
+        />
+      </div>
       <Field
         name="message"
         textarea
@@ -161,24 +170,26 @@ export function ContactForm(): React.ReactElement {
       {/* Rendert nichts, solange kein NEXT_PUBLIC_TURNSTILE_SITE_KEY gesetzt ist. */}
       <Turnstile onToken={handleToken} resetSignal={turnstileReset} />
 
-      <div className="flex flex-wrap items-center gap-4">
+      <div className="mt-1.5 flex flex-wrap items-center gap-4">
         <Button type="submit" disabled={isSubmitting}>
           {isSubmitting ? kontakt.form.submitting : kontakt.form.submit}
+          {!isSubmitting && <Icon name="arrow" />}
         </Button>
       </div>
 
       {/*
         Immer im DOM, damit Screenreader die Aenderung ansagen - ein erst
         nachtraeglich eingefuegtes aria-live-Element wird nicht vorgelesen.
+        Erfolg als weisses Kaertchen wie im Entwurf, Fehler in hellem Rot.
       */}
       <p
         role="status"
         aria-live="polite"
-        className={
-          status === 'error'
-            ? 'text-sm text-[var(--color-danger)]'
-            : 'text-muted-foreground text-sm'
-        }
+        className={cn(
+          'empty:hidden',
+          status === 'success' && 'text-page rounded-lg bg-white px-4 py-3.5 font-bold',
+          status === 'error' && 'text-danger text-small font-semibold',
+        )}
       >
         {message}
       </p>
@@ -221,18 +232,18 @@ function Consent({ errors }: { errors?: string[] }): React.ReactElement {
           required
           aria-invalid={hasError || undefined}
           aria-describedby={hasError ? errorId : undefined}
-          className="border-border accent-primary focus-visible:outline-primary mt-1 size-4 shrink-0 rounded-[var(--radius-sm)] border focus-visible:outline-2 focus-visible:outline-offset-2"
+          className="mt-0.5 size-5 flex-none accent-white"
         />
-        <label htmlFor={id} className="text-muted-foreground text-sm">
+        <label htmlFor={id} className="text-ink-soft text-base">
           {kontakt.form.consent.before}
-          <Link href={kontakt.form.consent.linkHref} className="text-foreground underline">
+          <Link href={kontakt.form.consent.linkHref} className="text-white underline">
             {kontakt.form.consent.linkLabel}
           </Link>
           {kontakt.form.consent.after}
         </label>
       </div>
       {hasError && errors && (
-        <p id={errorId} className="text-xs text-[var(--color-danger)]">
+        <p id={errorId} className="text-danger text-small font-semibold">
           {errors[0]}
         </p>
       )}
@@ -265,8 +276,10 @@ function Field({
   const errorId = `${id}-error`
   const hasError = Boolean(errors && errors.length > 0)
 
+  // Weisse Felder mit dunkler Schrift auf dem gruenen Blatt. Der Fokus zeigt
+  // sich als gruene Unterkante plus heller Ring, ein Fehler als rote Kante.
   const sharedClass =
-    'w-full rounded-[var(--radius-md)] border border-border bg-background px-3 py-2 text-foreground placeholder:text-muted-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary'
+    'w-full rounded-md border-0 border-b-[3px] border-transparent bg-field px-3.5 pt-3.5 pb-[11px] text-lg leading-snug text-field-ink transition-colors placeholder:text-field-placeholder focus:border-b-desk focus:shadow-[0_0_0_3px_rgb(255_255_255/0.35)] focus:outline-none aria-invalid:border-b-danger-line'
 
   const sharedProps = {
     id,
@@ -280,21 +293,25 @@ function Field({
   }
 
   return (
-    <div className="grid gap-1.5">
-      <label htmlFor={id} className="text-foreground text-sm font-medium">
+    <div className="grid gap-2">
+      <label htmlFor={id} className="text-base font-bold text-white">
         {label}
         {required && (
           <>
-            <span aria-hidden="true" className="text-muted-foreground ml-1">
+            <span aria-hidden="true" className="text-ink-soft ml-1">
               *
             </span>
             <span className="sr-only"> ({kontakt.form.required})</span>
           </>
         )}
       </label>
-      {textarea ? <textarea {...sharedProps} rows={5} /> : <input {...sharedProps} type={type} />}
+      {textarea ? (
+        <textarea {...sharedProps} rows={5} className={cn(sharedClass, 'min-h-[150px] resize-y')} />
+      ) : (
+        <input {...sharedProps} type={type} />
+      )}
       {hasError && errors && (
-        <p id={errorId} className="text-xs text-[var(--color-danger)]">
+        <p id={errorId} className="text-danger text-small font-semibold">
           {errors[0]}
         </p>
       )}

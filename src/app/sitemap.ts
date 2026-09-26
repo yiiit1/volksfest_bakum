@@ -21,7 +21,15 @@ export const dynamic = 'force-static'
  *
  *   { path: '/blog/mein-beitrag', lastModified: post.updatedAt }
  */
-const ROUTES = ['', '/about', '/kontakt', '/impressum', '/datenschutz'] as const
+const ROUTES = [
+  '',
+  '/verein',
+  '/wer-wir-sind',
+  '/mitgliedsantrag',
+  '/kontakt',
+  '/impressum',
+  '/datenschutz',
+] as const
 
 /**
  * Waehrend der Wartung zeigen alle Inhaltsseiten denselben Text wie die

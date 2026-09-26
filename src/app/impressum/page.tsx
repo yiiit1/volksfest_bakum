@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import { Container } from '@/components/ui/Container'
-import { Section } from '@/components/ui/Section'
+import { PageTitle } from '@/components/ui/PageTitle'
 import { LegalContent, type LegalBlock } from '@/components/LegalContent'
 import { MAINTENANCE_MODE } from '@/lib/maintenance'
 import { MaintenanceLegalPage } from '@/features/maintenance/components/MaintenanceLegalPage'
@@ -21,14 +20,10 @@ export default function ImpressumPage(): React.ReactElement {
   }
 
   return (
-    // Rechtstexte im schmalen Container: 72rem Zeilenlaenge liest niemand.
-    <Section space="md">
-      <Container width="narrow">
-        <h1 className="font-display text-title text-foreground font-semibold text-balance">
-          {impressum.title}
-        </h1>
-        <LegalContent blocks={blocks} variant="site" />
-      </Container>
-    </Section>
+    // Rechtstexte in schmaler Spalte: volle Blattbreite liest niemand.
+    <div className="max-w-narrow">
+      <PageTitle>{impressum.title}</PageTitle>
+      <LegalContent blocks={blocks} variant="site" />
+    </div>
   )
 }

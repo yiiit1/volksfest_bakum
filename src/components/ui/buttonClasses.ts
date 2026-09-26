@@ -1,18 +1,18 @@
 import { cn } from '@/lib/cn'
 
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'outline'
+/**
+ * primary  weisser Knopf mit dunkelgruener Schrift - die eine Hauptaktion
+ * quiet    weisse Kontur auf dem Blatt - die zweite Wahl daneben
+ */
+export type ButtonVariant = 'primary' | 'quiet'
 
 const base =
-  'inline-flex items-center justify-center rounded-[var(--radius-md)] px-5 py-2.5 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-60'
+  'inline-flex items-center gap-2.5 rounded-lg px-[22px] py-4 text-[17px] leading-none font-bold no-underline transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60'
 
 const variants: Record<ButtonVariant, string> = {
-  primary: 'bg-primary text-primary-foreground hover:opacity-90',
-  secondary: 'bg-muted text-foreground hover:bg-border',
-  ghost: 'bg-transparent text-foreground hover:bg-muted',
-  // Nimmt Rahmen- und Schriftfarbe vom Umfeld (currentColor). Dadurch der
-  // einzige Knopf, der auch auf einer eingefaerbten Flaeche sicher lesbar
-  // bleibt - z. B. im CTA-Band mit tone="inverted".
-  outline: 'border border-current bg-transparent text-current hover:opacity-80',
+  primary: 'bg-white text-page hover:bg-field-hover',
+  quiet:
+    'bg-transparent text-white shadow-[inset_0_0_0_1.5px_rgb(255_255_255/0.55)] hover:bg-white/8',
 }
 
 export function buttonClasses(variant: ButtonVariant = 'primary', className?: string): string {

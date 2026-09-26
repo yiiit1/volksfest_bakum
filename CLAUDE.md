@@ -33,11 +33,20 @@ stehen in der README, die Eigenheiten dieses Repos in `AGENTS.md`.
 ### Projektvorgaben (hier ergänzen)
 
 ```
-Primäre Farben:    <OKLCH-Tokens eintragen>
-Typografie:        <Display-Font / Body-Font>
-Bildstil:          <Photorealistisch / Illustration / Icon-basiert>
-Ästhetik:          <Kurzbeschreibung der Designrichtung>
+Primäre Farben:    Tisch #028565 (Logo-Grün), Blatt #014f3c, Kästen #015f48,
+                   Schrift weiß / #cdebe0; Registerfarben #6fdcb5 · #8fcfd6 ·
+                   #b7bbe0 · #dcb4e4 (die vier Stufen der Logo-Linie)
+Typografie:        Schibsted Grotesk (variabel 400–900) für alles, lokal
+Bildstil:          Fotos vom Festplatz und Vorstand (folgen), Strichsymbole
+Ästhetik:          Entwurf C „Vereinsordner“ – Julians „Hauptseite mit vier
+                   Reitern“ wörtlich: Registerreiter über einem grünen Blatt,
+                   Logo in Weiß groß auf dem Deckblatt. Nüchtern, kein
+                   Festzelt-Schnickschnack.
 ```
+
+Details und Regeln: `DESIGN.md`. Abgenommenes Original:
+`design/entwurf-c-referenz.html`. Hex statt OKLCH, weil das die im Entwurf
+abgenommenen Werte sind.
 
 ---
 

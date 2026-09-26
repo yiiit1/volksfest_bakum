@@ -1,49 +1,52 @@
 import type { Metadata } from 'next'
 import kontakt from '@/content/kontakt.json'
-import { Container } from '@/components/ui/Container'
-import { Section } from '@/components/ui/Section'
-import { PageHeader, PageHeading } from '@/components/ui/PageHeader'
+import { PageTitle, Lead } from '@/components/ui/PageTitle'
+import { Icon, type IconName } from '@/components/ui/Icon'
 import { ContactForm } from '@/features/contact/components/ContactForm'
 import { MAINTENANCE_MODE } from '@/lib/maintenance'
 import { MaintenancePage } from '@/features/maintenance/components/MaintenancePage'
 
-// Im Wartungsmodus kein eigener Titel - dann gilt der Default aus dem Layout.
 export const metadata: Metadata = MAINTENANCE_MODE
-  ? {
-      // Waehrend der Wartung zeigt diese Route denselben Inhalt wie die
-      // Startseite. Der Canonical buendelt die Duplikate dort.
-      alternates: { canonical: '/' },
-    }
+  ? { alternates: { canonical: '/' } }
   : {
       title: kontakt.meta.title,
       description: kontakt.meta.description,
       alternates: { canonical: '/kontakt' },
     }
 
+/** Register "Kontakt": Anschrift und Wege links, Kontaktformular rechts. */
 export default function KontaktPage(): React.ReactElement {
   if (MAINTENANCE_MODE) return <MaintenancePage />
 
   return (
-    <>
-      <PageHeader title={kontakt.hero.title} lead={kontakt.hero.lead} />
-
-      <Section space="md">
-        <Container className="grid gap-[var(--block-gap)] md:grid-cols-[1.2fr_1fr] md:gap-12">
-          <ContactForm />
-          <aside className="grid gap-6 self-start">
-            <div className="grid gap-2">
-              <PageHeading>{kontakt.address.label}</PageHeading>
-              <address className="text-muted-foreground not-italic">
-                {kontakt.address.lines.map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
-              </address>
-            </div>
-          </aside>
-        </Container>
-      </Section>
-    </>
+    <div className="ordner:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] grid gap-[clamp(2rem,5vw,4.5rem)]">
+      <div>
+        <PageTitle>{kontakt.title}</PageTitle>
+        <Lead>{kontakt.lead}</Lead>
+        <ul className="border-rule mt-6 border-t">
+          {kontakt.rows.map((row) => (
+            <li
+              key={row.label}
+              className="border-rule grid grid-cols-[24px_1fr] items-baseline gap-x-4 gap-y-1 border-b py-5 sm:grid-cols-[24px_140px_1fr]"
+            >
+              <Icon name={row.icon as IconName} className="text-register-4 self-center" />
+              <span className="font-bold">{row.label}</span>
+              <div className="col-start-2 sm:col-start-auto">
+                {'href' in row && row.href ? (
+                  <a href={row.href} className="text-white underline">
+                    {row.text}
+                  </a>
+                ) : (
+                  row.text
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="bg-page-2 self-start rounded-lg p-[clamp(1.375rem,3.5vw,2.25rem)]">
+        <ContactForm />
+      </div>
+    </div>
   )
 }

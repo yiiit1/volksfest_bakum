@@ -1,24 +1,33 @@
 {
   "meta": {
     "title": "Kontakt",
-    "description": "Nehmen Sie Kontakt mit uns auf. Wir freuen uns auf Ihre Nachricht."
+    "description": "Kontakt zum Volksfestverein Bakum e.V. – Anschrift, E-Mail, Telefon und Kontaktformular."
   },
-  "hero": {
-    "title": "Kontakt",
-    "lead": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Wir freuen uns auf Ihre Nachricht."
-  },
+  "title": "Temporibus autem quibusdam",
+  "lead": "Et aut officiis debitis aut rerum necessitatibus saepe eveniet.",
+  "rows": [
+    { "icon": "pin", "label": "Anschrift", "text": "Lorem ipsum 12, 49456 Bakum" },
+    {
+      "icon": "mail",
+      "label": "E-Mail",
+      "text": "lorem@ipsum.de",
+      "href": "mailto:lorem@ipsum.de"
+    },
+    { "icon": "phone", "label": "Telefon", "text": "0000 000 000" }
+  ],
   "form": {
+    "label": "Kontaktformular",
     "name": {
       "label": "Name",
-      "placeholder": "Ihr Name"
+      "placeholder": ""
     },
     "email": {
       "label": "E-Mail",
-      "placeholder": "name@beispiel.de"
+      "placeholder": ""
     },
     "message": {
       "label": "Nachricht",
-      "placeholder": "Wie können wir helfen?"
+      "placeholder": ""
     },
     "consent": {
       "before": "Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verarbeitet werden. Weitere Hinweise dazu in der ",
@@ -33,15 +42,11 @@
     "submit": "Nachricht senden",
     "submitting": "Wird gesendet …",
     "status": {
-      "success": "Vielen Dank! Ihre Nachricht ist angekommen. Wir melden uns in Kürze.",
+      "success": "Danke! Ihre Nachricht ist beim Vorstand angekommen. Wir melden uns in Kürze.",
       "invalid": "Bitte prüfen Sie die markierten Felder.",
       "captcha": "Die Spam-Prüfung ist noch nicht abgeschlossen oder fehlgeschlagen. Bitte laden Sie die Seite neu und versuchen es erneut.",
       "unconfigured": "Der Versand ist in dieser Umgebung noch nicht eingerichtet. Bitte schreiben Sie uns bis dahin direkt per E-Mail.",
       "send-failed": "Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es später erneut oder schreiben Sie uns direkt per E-Mail."
     }
-  },
-  "address": {
-    "label": "Anschrift",
-    "lines": ["Lorem Ipsum GmbH", "Musterstraße 1", "12345 Musterstadt"]
   }
 }

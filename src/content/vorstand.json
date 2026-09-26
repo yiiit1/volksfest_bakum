@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "title": "Wer wir sind",
+    "description": "Der Vorstand des Volksfestvereins Bakum e.V. – Ansprechpartner für alle, die mitmachen wollen."
+  },
+  "title": "At vero eos et accusamus",
+  "lead": "Et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti.",
+  "people": [
+    {
+      "name": "Lorem Ipsum",
+      "role": "Dolor sit amet",
+      "text": "Consectetur adipiscing elit, sed do eiusmod tempor.",
+      "email": "lorem@ipsum.de"
+    },
+    {
+      "name": "Consectetur Elit",
+      "role": "Sed do eiusmod",
+      "text": "Ut labore et dolore magna aliqua, ut enim ad minim.",
+      "email": "lorem@ipsum.de"
+    },
+    {
+      "name": "Tempor Incidunt",
+      "role": "Ut labore",
+      "text": "Quis nostrud exercitation ullamco laboris nisi ut.",
+      "email": "lorem@ipsum.de"
+    },
+    {
+      "name": "Magna Aliqua",
+      "role": "Enim ad minim",
+      "text": "Aliquip ex ea commodo consequat, duis aute irure.",
+      "email": "lorem@ipsum.de"
+    }
+  ]
+}

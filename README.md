@@ -1,4 +1,15 @@
-# Website-Template (Next.js 16 + Tailwind v4, Cloudflare Pages)
+# Volksfestverein Bakum e.V. – Website
+
+Website des Volksfestvereins Bakum, gebaut nach Entwurf C „Vereinsordner“
+(Gestaltung: `DESIGN.md`, Stand und offene Punkte: `AGENTS.md`).
+
+> Der Rest dieser Datei ist die Anleitung aus der Vorlage. Teil 1 (neues
+> Projekt einrichten) ist für dieses Projekt erledigt; Hinweise dort auf die
+> Sektionsliste, `/about`, die Karte und die Motion-Bausteine beziehen sich
+> auf die Vorlage – diese Teile sind hier entfernt. Teil 2 (Deployment) gilt
+> unverändert.
+
+## Aus der Vorlage: Website-Template (Next.js 16 + Tailwind v4, Cloudflare Pages)
 
 Blaupause für neue Kundenprojekte. Ein neues Projekt braucht im Normalfall nur
 noch Design-Tokens, Schriften, Texte und die Pflichtseiten — kein Code-Umbau.

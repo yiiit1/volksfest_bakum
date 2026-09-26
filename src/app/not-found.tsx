@@ -1,6 +1,4 @@
 import common from '@/content/common.json'
-import { Container } from '@/components/ui/Container'
-import { Section } from '@/components/ui/Section'
 import { ButtonLink } from '@/components/ui/ButtonLink'
 import { MAINTENANCE_MODE } from '@/lib/maintenance'
 import { MaintenancePage } from '@/features/maintenance/components/MaintenancePage'
@@ -11,20 +9,11 @@ export default function NotFound(): React.ReactElement {
   if (MAINTENANCE_MODE) return <MaintenancePage />
 
   return (
-    <Section space="lg">
-      <Container
-        width="card"
-        className="flex min-h-[50vh] flex-col items-center justify-center gap-6 text-center"
-      >
-        <p className="font-display text-primary text-display font-semibold">
-          {common.notFound.code}
-        </p>
-        <h1 className="font-display text-foreground text-heading font-semibold text-balance">
-          {common.notFound.title}
-        </h1>
-        <p className="text-muted-foreground text-pretty">{common.notFound.body}</p>
-        <ButtonLink href="/">{common.notFound.cta}</ButtonLink>
-      </Container>
-    </Section>
+    <div className="max-w-card mx-auto flex min-h-[40vh] flex-col items-center justify-center gap-6 text-center">
+      <p className="text-title text-ink-soft font-extrabold">{common.notFound.code}</p>
+      <h1 className="text-heading font-extrabold text-balance">{common.notFound.title}</h1>
+      <p className="text-ink-soft text-pretty">{common.notFound.body}</p>
+      <ButtonLink href="/">{common.notFound.cta}</ButtonLink>
+    </div>
   )
 }
